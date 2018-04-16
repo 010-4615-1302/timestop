@@ -10,47 +10,59 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var myDatePicker: UIDatePicker!
+    @IBOutlet weak var datetext: UILabel!
     
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var datepicker: UIDatePicker!
     
-    @IBOutlet weak var currentTimeLabel: UILabel!
-    var myTimer = Timer()
+    @IBOutlet weak var time: UILabel!
+    var timer = Timer();
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        timeLabel.text = formatter.string(from:myDatePicker.date)
-        myTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(myTimer) in
-            self.updatTime()
-        })
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {(myTimer) in
+            self.updateTime()
+    })
     }
-    func updatTime() {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        currentTimeLabel.text = formatter.string(from: date)
-        
-        if currentTimeLabel.text == timeLabel.text {
-            view.backgroundColor = UIColor.red
-        }
-    }
-    
-    @IBAction func changeDatePicker(_ sender: Any) {
-        print("change Date Pucker")
-        print(myDatePicker.date)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM-dd HH:mm:ss EE"
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        timeLabel.text = formatter.string(from:myDatePicker.date)
-    }
-    
-    @IBAction func stopAlert(_ sender: Any) {
+    @IBAction func btu(_ sender: Any) {
         view.backgroundColor = UIColor.white
     }
     
+    @IBAction func datepicker(_ sender: Any) {
+        let dateformatter = DateFormatter()
+        dateformatter.locale = Locale(identifier: "ko_KR")
+        dateformatter.dateFormat="yyyy-MM-dd a HH:mm:ss EEE"
+        let date = dateformatter.string(from: datepicker.date)
+        datetext.text = date
+    }
+    func updateTime() {
+        let date1 = Date()
+        let formatter = DateFormatter()
+        formatter.locale  = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd a Hh:mm:ss EEE"
+        let time1 = formatter.string(from: date1)
+        time.text = time1
+        if datetext.text == time.text{
+            view.backgroundColor = UIColor.red
+            alert()
+        }
+    }
+    func alert() {
+        let alert = UIAlertController(title: "알람", message: "취소하시겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default, handler: {(action: UIAlertAction!) in self.view.backgroundColor = UIColor.white})
+        let no = UIAlertAction(title: "취소", style: .default, handler:nil)
+        alert.addAction(ok)
+        alert.addAction(no)
+        
+        self.present(alert,animated: true,completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

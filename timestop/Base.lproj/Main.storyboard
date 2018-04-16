@@ -31,9 +31,6 @@
                                 <date key="date" timeIntervalSinceReferenceDate="545549815.20450997">
                                     <!--2018-04-16 05:36:55 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="changeDatePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="hOE-Fy-x6K"/>
-                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEu-pr-MQe">
                                 <rect key="frame" x="112" y="404" width="148" height="21"/>
@@ -47,6 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stop Alert"/>
                                 <connections>
+                                    <action selector="btu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VG1-98-Fd2"/>
                                     <action selector="stopAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vBr-Ed-k3i"/>
                                 </connections>
                             </button>
@@ -56,7 +54,8 @@
                     </view>
                     <connections>
                         <outlet property="currentTimeLabel" destination="qEu-pr-MQe" id="HSr-xn-21r"/>
-                        <outlet property="myDatePicker" destination="hTd-IV-gtk" id="bfH-2T-Ukm"/>
+                        <outlet property="datetext" destination="nCK-2B-gWv" id="LIH-uq-NjM"/>
+                        <outlet property="time" destination="qEu-pr-MQe" id="YCf-im-Aez"/>
                         <outlet property="timeLabel" destination="nCK-2B-gWv" id="Hdn-og-VXG"/>
                     </connections>
                 </viewController>
